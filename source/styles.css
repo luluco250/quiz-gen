@@ -1,0 +1,42 @@
+:root {
+	--bg-1: #111;
+	--bg-2: #0a0a0a;
+	--fg-1: #ddd;
+	--font: Arial, Helvetica, Noto Sans, sans-serif;
+	--font-size: 12pt;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: var(--font);
+	font-size: var(--font-size);
+	color: var(--fg-1);
+	background: var(--bg-1);
+	margin: 0;
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+a {
+	color: unset;
+	text-decoration: unset;
+	font-weight: bold;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+#video-preview {
+	background: black;
+}
