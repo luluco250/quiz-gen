@@ -1,0 +1,9 @@
+.navbar {
+	width: 100%;
+	background: var(--bg-2);
+	padding: 0 1em;
+}
+
+.navbarContent {
+	max-width: 1360px;
+}

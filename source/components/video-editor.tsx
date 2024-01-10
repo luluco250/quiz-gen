@@ -1,16 +1,21 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, ReactNode, useRef, useState } from "react";
 import { SoundFile } from "../models/sound-file";
 import { assertNotNullish } from "../utils/assert";
 import { Upload, UploadData } from "./upload";
+import style from "./video-editor.module.css";
 
 export interface VideoEditorProps {
+	className?: string;
 	files?: UploadData[];
 }
 
-export function VideoEditor(props: VideoEditorProps) {
+export function VideoEditor(props: VideoEditorProps): ReactNode {
 	const [files, setFiles] = useState(props.files ?? []);
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
-	async function onAddFile(event: ChangeEvent<HTMLInputElement>) {
+	async function onAddFile(
+		event: ChangeEvent<HTMLInputElement>,
+	): Promise<void> {
 		assertNotNullish(event.target.files, "files");
 
 		const addedFiles: UploadData[] = [];
@@ -26,7 +31,7 @@ export function VideoEditor(props: VideoEditorProps) {
 		setFiles([...files, ...addedFiles]);
 	}
 
-	function onSetTimestamp(index: number, value: number) {
+	function onSetTimestamp(index: number, value: number): void {
 		const newFiles = [...files];
 		const file = newFiles[index];
 
@@ -42,17 +47,30 @@ export function VideoEditor(props: VideoEditorProps) {
 		setFiles(newFiles);
 	}
 
-	function onRemoveFile(index: number) {
+	function onRemoveFile(index: number): void {
 		const newFiles = [...files];
 		const toRemove = newFiles.splice(index)[0];
 		toRemove.soundFile.dispose();
 		setFiles(newFiles);
 	}
 
+	async function onRender(): Promise<void> {}
+
 	return (
-		<>
-			<input type="file" onChange={onAddFile} multiple />
-			<ol>
+		<div className={props.className}>
+			<input
+				ref={fileInputRef}
+				type="file"
+				onChange={e => void onAddFile(e)}
+				accept="audio/*"
+				multiple
+				hidden
+			/>
+			<div className={style.buttonRow}>
+				<button onClick={() => void onRender()}>Render</button>
+				<button onClick={() => fileInputRef.current?.click()}>Add Song</button>
+			</div>
+			<ol className={style.entryList}>
 				{files.map((file, index) => (
 					<Upload
 						key={index}
@@ -63,6 +81,6 @@ export function VideoEditor(props: VideoEditorProps) {
 					/>
 				))}
 			</ol>
-		</>
+		</div>
 	);
 }

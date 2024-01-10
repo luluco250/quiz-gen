@@ -8,11 +8,21 @@ const esbuildOptions = {
 	outdir: "./build/",
 	bundle: true,
 	logLevel: "debug",
+	format: "esm",
+	sourcemap: false,
+	target: ["es2022"],
+	platform: "browser",
+	treeShaking: true,
 };
 
 switch (process.argv[2]) {
 	case "serve": {
-		const context = await esbuild.context(esbuildOptions);
+		const context = await esbuild.context({
+			...esbuildOptions,
+			minify: false,
+			treeShaking: false,
+			sourcemap: true,
+		});
 		await context.serve({
 			servedir: ".",
 		});

@@ -5,14 +5,5 @@
 	"jsxSingleQuote": false,
 	"singleQuote": false,
 	"semi": true,
-	"trailingComma": "all",
-	"tabWidth": 2,
-	"overrides": [
-		{
-			"files": ["**/*.tsx", "**/*.ts", "**/*.jsx", "**/*.js"],
-			"options": {
-				"tabWidth": 4
-			}
-		}
-	]
+	"trailingComma": "all"
 }

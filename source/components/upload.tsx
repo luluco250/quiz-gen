@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ReactNode } from "react";
 import { SoundFile } from "../models/sound-file";
-import { slider, timestamp } from "./upload.module.css";
+import style from "./upload.module.css";
 
 export interface UploadData {
 	readonly soundFile: SoundFile;
@@ -28,7 +28,7 @@ export function Upload(props: UploadProps): ReactNode {
 			{props.upload.soundFile.filename}
 			<input
 				type="range"
-				className={slider}
+				className={style.slider}
 				value={value}
 				min={min}
 				max={max}
@@ -36,7 +36,7 @@ export function Upload(props: UploadProps): ReactNode {
 			/>
 			<input
 				type="number"
-				className={timestamp}
+				className={style.timestamp}
 				value={value}
 				min={min}
 				max={max}

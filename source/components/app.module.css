@@ -1,13 +1,15 @@
 .page {
 	flex: 1;
+	align-self: stretch;
 	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
+	flex-flow: row nowrap;
+	align-items: start;
 }
 
-.footer {
-	width: 100%;
-	background: var(--bg-2);
-	text-align: center;
-	padding: 1em;
+.preview {
+	flex: 1;
+}
+
+.editor {
+	flex: 2;
 }

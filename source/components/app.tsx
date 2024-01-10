@@ -1,15 +1,19 @@
-import React from "react";
-import { footer, page } from "./app.module.css";
+import React, { ReactNode } from "react";
+import style from "./app.module.css";
+import { Footer } from "./footer";
+import { Navbar } from "./navbar";
 import { VideoEditor } from "./video-editor";
+import { VideoPreview } from "./video-preview";
 
-export const App = () => (
-	<>
-		<div className={page}>
-			{/* <VideoPreview /> */}
-			<VideoEditor />
-		</div>
-		<footer className={footer}>
-			<a href="https://github.com/luluco250">lucasm</a> - 2024
-		</footer>
-	</>
-);
+export function App(): ReactNode {
+	return (
+		<>
+			<Navbar />
+			<div className={style.page}>
+				<VideoEditor className={style.editor} />
+				<VideoPreview className={style.preview} />
+			</div>
+			<Footer />
+		</>
+	);
+}

@@ -11,7 +11,7 @@ export class SoundFile {
 		return await new Promise<SoundFile>((resolve, reject) => {
 			const audio = document.createElement("audio");
 			const fileReader = new FileReader();
-			fileReader.onload = e => {
+			fileReader.onload = () => {
 				const result = fileReader.result;
 
 				if (typeof result !== "string") {
@@ -26,7 +26,7 @@ export class SoundFile {
 		});
 	}
 
-	public dispose(): void {
+	public dispose() {
 		const url = this.dataUrl;
 		this._audio.remove();
 		URL.revokeObjectURL(url);

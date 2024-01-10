@@ -1,3 +1,12 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { videoPreview } from "./video-preview.module.css";
 
-export const VideoPreview = () => <canvas width={1024} height={576}></canvas>;
+export interface VideoPreviewProps {
+	className?: string;
+}
+
+export function VideoPreview(props: VideoPreviewProps): ReactNode {
+	return (
+		<video className={[props.className, videoPreview].join(" ")} controls />
+	);
+}

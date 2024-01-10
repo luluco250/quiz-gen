@@ -1,7 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
+import { footer } from "./footer.module.css";
 
-export const Footer = () => (
-	<footer id="page-footer">
-		<a href="https://github.com/luluco250">lucasm</a> - 2024
-	</footer>
-);
+export function Footer(): ReactNode {
+	return (
+		<footer className={footer}>
+			<a href="https://github.com/luluco250">lucasm</a> - 2024
+		</footer>
+	);
+}

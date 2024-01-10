@@ -1,0 +1,12 @@
+.buttonRow {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.entryList {
+	padding: 0;
+}
+
+.entryList > * {
+	padding: 1em;
+}
