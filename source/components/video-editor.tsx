@@ -25,25 +25,16 @@ export function VideoEditor(props: VideoEditorProps): ReactNode {
 			addedFiles.push({
 				soundFile,
 				timestamp: 0,
+				name: file.name.replace(/\..*$/, ""),
 			});
 		}
 
 		setFiles([...files, ...addedFiles]);
 	}
 
-	function onSetTimestamp(index: number, value: number): void {
+	function setUploadData(index: number, value: UploadData): void {
 		const newFiles = [...files];
-		const file = newFiles[index];
-
-		if (
-			value < 0 ||
-			value > file.soundFile.duration ||
-			value === file.timestamp
-		) {
-			return;
-		}
-
-		file.timestamp = value;
+		newFiles[index] = value;
 		setFiles(newFiles);
 	}
 
@@ -76,7 +67,7 @@ export function VideoEditor(props: VideoEditorProps): ReactNode {
 						key={index}
 						id={index}
 						upload={file}
-						onSetTimestamp={onSetTimestamp}
+						setUploadData={setUploadData}
 						onRemove={onRemoveFile}
 					/>
 				))}

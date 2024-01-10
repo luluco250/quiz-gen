@@ -1083,7 +1083,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState2(initialState) {
+        function useState3(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1095,7 +1095,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect(create, deps) {
+        function useEffect2(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -1877,7 +1877,7 @@ var require_react_development = __commonJS({
         exports.useContext = useContext;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect;
+        exports.useEffect = useEffect2;
         exports.useId = useId;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useInsertionEffect = useInsertionEffect;
@@ -1885,7 +1885,7 @@ var require_react_development = __commonJS({
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
         exports.useRef = useRef2;
-        exports.useState = useState2;
+        exports.useState = useState3;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -23576,8 +23576,17 @@ var SoundFile = class _SoundFile {
     this._audio.remove();
     URL.revokeObjectURL(url);
   }
-  get duration() {
-    return this._audio.duration;
+  async getDuration() {
+    const duration = this._audio.duration;
+    if (!Number.isNaN(duration)) {
+      return duration;
+    }
+    return await new Promise((resolve) => {
+      this._audio.ondurationchange = () => {
+        this._audio.ondurationchange = null;
+        resolve(this._audio.duration);
+      };
+    });
   }
   get dataUrl() {
     return this._audio.src;
@@ -23604,6 +23613,8 @@ function assertNotNullish(value, name) {
 
 // source/components/upload.module.css
 var upload_default = {
+  container: "upload_container",
+  name: "upload_name",
   slider: "upload_slider",
   timestamp: "upload_timestamp"
 };
@@ -23613,11 +23624,35 @@ var import_react3 = __toESM(require_react(), 1);
 function Upload(props) {
   const value = props.upload.timestamp;
   const min = 0;
-  const max = props.upload.soundFile.duration;
-  function onChangeValue(event) {
-    props.onSetTimestamp(props.id, parseFloat(event.target.value));
+  const [max, setMax] = (0, import_react3.useState)(0);
+  (0, import_react3.useEffect)(() => {
+    void props.upload.soundFile.getDuration().then((value2) => setMax(value2));
+  }, [props]);
+  function onChangeName(event) {
+    props.setUploadData(props.id, {
+      ...props.upload,
+      name: event.target.value
+    });
   }
-  return /* @__PURE__ */ import_react3.default.createElement("div", null, props.upload.soundFile.filename, /* @__PURE__ */ import_react3.default.createElement(
+  function onChangeValue(event) {
+    const value2 = parseFloat(event.target.value);
+    if (Number.isNaN(value2) || value2 < min || value2 > max || value2 === props.upload.timestamp) {
+      return;
+    }
+    props.setUploadData(props.id, {
+      ...props.upload,
+      timestamp: value2
+    });
+  }
+  return /* @__PURE__ */ import_react3.default.createElement("div", { className: upload_default.container }, /* @__PURE__ */ import_react3.default.createElement(
+    "input",
+    {
+      type: "text",
+      className: upload_default.name,
+      value: props.upload.name,
+      onChange: onChangeName
+    }
+  ), /* @__PURE__ */ import_react3.default.createElement(
     "input",
     {
       type: "range",
@@ -23658,18 +23693,15 @@ function VideoEditor(props) {
       const soundFile = await SoundFile.fromFile(file);
       addedFiles.push({
         soundFile,
-        timestamp: 0
+        timestamp: 0,
+        name: file.name.replace(/\..*$/, "")
       });
     }
     setFiles([...files, ...addedFiles]);
   }
-  function onSetTimestamp(index, value) {
+  function setUploadData(index, value) {
     const newFiles = [...files];
-    const file = newFiles[index];
-    if (value < 0 || value > file.soundFile.duration || value === file.timestamp) {
-      return;
-    }
-    file.timestamp = value;
+    newFiles[index] = value;
     setFiles(newFiles);
   }
   function onRemoveFile(index) {
@@ -23696,19 +23728,22 @@ function VideoEditor(props) {
       key: index,
       id: index,
       upload: file,
-      onSetTimestamp,
+      setUploadData,
       onRemove: onRemoveFile
     }
   ))));
 }
 
 // source/components/video-preview.module.css
-var videoPreview = "video_preview_videoPreview";
+var video_preview_default = {
+  container: "video_preview_container",
+  videoPreview: "video_preview_videoPreview"
+};
 
 // source/components/video-preview.tsx
 var import_react5 = __toESM(require_react(), 1);
 function VideoPreview(props) {
-  return /* @__PURE__ */ import_react5.default.createElement("video", { className: [props.className, videoPreview].join(" "), controls: true });
+  return /* @__PURE__ */ import_react5.default.createElement("div", { className: `${props.className} ${video_preview_default.container}` }, /* @__PURE__ */ import_react5.default.createElement("video", { className: video_preview_default.videoPreview, width: 0, height: 0, controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.video, type: "video/mp4" })));
 }
 
 // source/components/app.tsx

@@ -3,7 +3,6 @@
 	align-self: stretch;
 	display: flex;
 	flex-flow: row nowrap;
-	align-items: start;
 }
 
 .preview {
@@ -11,5 +10,16 @@
 }
 
 .editor {
-	flex: 2;
+	flex: 1;
+	overflow: auto;
+}
+
+@media (orientation: portrait) {
+	.page {
+		flex-flow: column-reverse nowrap;
+	}
+
+	.preview {
+		flex: 0;
+	}
 }

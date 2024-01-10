@@ -152,13 +152,21 @@ template {
   align-self: stretch;
   display: flex;
   flex-flow: row nowrap;
-  align-items: start;
 }
 .app_preview {
   flex: 1;
 }
 .app_editor {
-  flex: 2;
+  flex: 1;
+  overflow: auto;
+}
+@media (orientation: portrait) {
+  .app_page {
+    flex-flow: column-reverse nowrap;
+  }
+  .app_preview {
+    flex: 0;
+  }
 }
 
 /* source/components/footer.module.css */
@@ -180,11 +188,27 @@ template {
 }
 
 /* source/components/upload.module.css */
+.upload_container {
+  padding: 1em;
+  gap: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.upload_name {
+  width: 0;
+  min-width: 10em;
+  flex: 1;
+}
 .upload_slider {
-  width: 10em;
+  width: 0;
+  min-width: 10em;
+  flex: 1;
 }
 .upload_timestamp {
-  width: 5em;
+  width: 0;
+  min-width: 3em;
+  flex: 0.3;
 }
 
 /* source/components/video-editor.module.css */
@@ -195,13 +219,25 @@ template {
 .video_editor_entryList {
   padding: 0;
 }
-.video_editor_entryList > * {
-  padding: 1em;
-}
 
 /* source/components/video-preview.module.css */
+.video_preview_container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: start;
+  justify-content: center;
+}
 .video_preview_videoPreview {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   background: black;
+}
+@media (orientation: portrait) {
+  .video_preview_container {
+    align-items: start;
+  }
 }
 
 /* source/styles.css */
@@ -214,7 +250,7 @@ template {
     Helvetica,
     Noto Sans,
     sans-serif;
-  --font-size: 12pt;
+  --font-size: 10pt;
 }
 body {
   box-sizing: border-box;

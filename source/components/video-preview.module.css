@@ -1,3 +1,20 @@
+.container {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: start;
+	justify-content: center;
+}
+
 .videoPreview {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: contain;
 	background: black;
+}
+
+@media (orientation: portrait) {
+	.container {
+		align-items: start;
+	}
 }

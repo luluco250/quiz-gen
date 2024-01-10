@@ -6,7 +6,3 @@
 .entryList {
 	padding: 0;
 }
-
-.entryList > * {
-	padding: 1em;
-}

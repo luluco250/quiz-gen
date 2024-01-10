@@ -1,7 +1,25 @@
+.container {
+	padding: 1em;
+	gap: 1em;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+
+.name {
+	width: 0;
+	min-width: 10em;
+	flex: 1;
+}
+
 .slider {
-	width: 10em;
+	width: 0;
+	min-width: 10em;
+	flex: 1;
 }
 
 .timestamp {
-	width: 5em;
+	width: 0;
+	min-width: 3em;
+	flex: 0.3;
 }
