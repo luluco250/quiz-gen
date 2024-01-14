@@ -10,7 +10,7 @@ export function assert(condition: boolean, message: string): asserts condition {
 	}
 }
 
-export function assertNotNullish<T extends {}>(
+export function assertNotNullish<T extends NonNullable<unknown>>(
 	value: T | null | undefined,
 	name: string,
 ): asserts value is T {

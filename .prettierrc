@@ -1,9 +1,0 @@
-{
-	"useTabs": true,
-	"htmlWhitespaceSensitivity": "ignore",
-	"arrowParens": "avoid",
-	"jsxSingleQuote": false,
-	"singleQuote": false,
-	"semi": true,
-	"trailingComma": "all"
-}

@@ -470,7 +470,7 @@ var require_react_development = __commonJS({
             }
           }
         }
-        var ReactElement = function(type, key, ref, self, source, owner, props) {
+        var ReactElement2 = function(type, key, ref, self, source, owner, props) {
           var element = {
             // This tag allows us to uniquely identify this as a React Element
             $$typeof: REACT_ELEMENT_TYPE,
@@ -571,13 +571,13 @@ var require_react_development = __commonJS({
               }
             }
           }
-          return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
+          return ReactElement2(type, key, ref, self, source, ReactCurrentOwner.current, props);
         }
         function cloneAndReplaceKey(oldElement, newKey) {
-          var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
+          var newElement = ReactElement2(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
           return newElement;
         }
-        function cloneElement(element, config, children) {
+        function cloneElement2(element, config, children) {
           if (element === null || element === void 0) {
             throw new Error("React.cloneElement(...): The argument must be a React element, but you passed " + element + ".");
           }
@@ -623,7 +623,7 @@ var require_react_development = __commonJS({
             }
             props.children = childArray;
           }
-          return ReactElement(element.type, key, ref, self, source, owner, props);
+          return ReactElement2(element.type, key, ref, self, source, owner, props);
         }
         function isValidElement(object) {
           return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
@@ -783,7 +783,7 @@ var require_react_development = __commonJS({
           }
           return children;
         }
-        function createContext(defaultValue) {
+        function createContext2(defaultValue) {
           var context = {
             $$typeof: REACT_CONTEXT_TYPE,
             // As a workaround to support multiple concurrent renderers, we categorize
@@ -1069,7 +1069,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher;
         }
-        function useContext(Context) {
+        function useContext2(Context) {
           var dispatcher = resolveDispatcher();
           {
             if (Context._context !== void 0) {
@@ -1107,7 +1107,7 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useLayoutEffect(create, deps);
         }
-        function useCallback(callback, deps) {
+        function useCallback3(callback, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useCallback(callback, deps);
         }
@@ -1647,7 +1647,7 @@ var require_react_development = __commonJS({
           return validatedFactory;
         }
         function cloneElementWithValidation(element, props, children) {
-          var newElement = cloneElement.apply(this, arguments);
+          var newElement = cloneElement2.apply(this, arguments);
           for (var i = 2; i < arguments.length; i++) {
             validateChildKeys(arguments[i], newElement.type);
           }
@@ -1863,7 +1863,7 @@ var require_react_development = __commonJS({
         exports.Suspense = REACT_SUSPENSE_TYPE;
         exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
         exports.cloneElement = cloneElement$1;
-        exports.createContext = createContext;
+        exports.createContext = createContext2;
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
@@ -1873,8 +1873,8 @@ var require_react_development = __commonJS({
         exports.memo = memo;
         exports.startTransition = startTransition;
         exports.unstable_act = act;
-        exports.useCallback = useCallback;
-        exports.useContext = useContext;
+        exports.useCallback = useCallback3;
+        exports.useContext = useContext2;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
         exports.useEffect = useEffect2;
@@ -2381,9 +2381,9 @@ var require_react_dom_development = __commonJS({
         if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
           __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
         }
-        var React8 = require_react();
+        var React10 = require_react();
         var Scheduler = require_scheduler();
-        var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React10.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         var suppressWarning = false;
         function setSuppressWarning(newSuppressWarning) {
           {
@@ -3988,7 +3988,7 @@ var require_react_dom_development = __commonJS({
           {
             if (props.value == null) {
               if (typeof props.children === "object" && props.children !== null) {
-                React8.Children.forEach(props.children, function(child) {
+                React10.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -12435,7 +12435,7 @@ var require_react_dom_development = __commonJS({
           }
         }
         var fakeInternalInstance = {};
-        var emptyRefsObject = new React8.Component().refs;
+        var emptyRefsObject = new React10.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23527,12 +23527,14 @@ var app_default = {
 };
 
 // source/components/footer.module.css
-var footer = "footer_footer";
+var footer_default = {
+  footer: "footer_footer"
+};
 
 // source/components/footer.tsx
 var import_react = __toESM(require_react(), 1);
 function Footer() {
-  return /* @__PURE__ */ import_react.default.createElement("footer", { className: footer }, /* @__PURE__ */ import_react.default.createElement("a", { href: "https://github.com/luluco250" }, "lucasm"), " - 2024");
+  return /* @__PURE__ */ import_react.default.createElement("footer", { className: footer_default.footer }, /* @__PURE__ */ import_react.default.createElement("a", { href: "https://github.com/luluco250" }, "lucasm"), " - 2024");
 }
 
 // source/components/navbar.module.css
@@ -23545,6 +23547,18 @@ var navbar_default = {
 var import_react2 = __toESM(require_react(), 1);
 function Navbar() {
   return /* @__PURE__ */ import_react2.default.createElement("nav", { className: navbar_default.navbar }, /* @__PURE__ */ import_react2.default.createElement("div", { className: navbar_default.navbarContent }, /* @__PURE__ */ import_react2.default.createElement("h3", null, "Quiz Generator")));
+}
+
+// source/contexts/app.tsx
+var import_react3 = __toESM(require_react(), 1);
+var AppContextImpl = class {
+  hello() {
+    console.log("Hello world!");
+  }
+};
+var AppContext = (0, import_react3.createContext)(new AppContextImpl());
+function AppProvider(props) {
+  return /* @__PURE__ */ import_react3.default.createElement(AppContext.Provider, { value: new AppContextImpl() }, props.children);
 }
 
 // source/models/sound-file.ts
@@ -23596,6 +23610,17 @@ var SoundFile = class _SoundFile {
   }
 };
 
+// source/models/upload-data.ts
+var UploadData = class {
+  constructor(soundFile) {
+    this.soundFile = soundFile;
+    this.name = soundFile.filename.replace(/\..*$/, "");
+  }
+  id = crypto.randomUUID();
+  timestamp = 0;
+  name;
+};
+
 // source/utils/assert.ts
 var AssertionError = class extends Error {
   constructor(message) {
@@ -23620,31 +23645,41 @@ var upload_default = {
 };
 
 // source/components/upload.tsx
-var import_react3 = __toESM(require_react(), 1);
+var import_react4 = __toESM(require_react(), 1);
 function Upload(props) {
   const value = props.upload.timestamp;
   const min = 0;
-  const [max, setMax] = (0, import_react3.useState)(0);
-  (0, import_react3.useEffect)(() => {
+  const [max, setMax] = (0, import_react4.useState)(0);
+  (0, import_react4.useEffect)(() => {
     void props.upload.soundFile.getDuration().then((value2) => setMax(value2));
   }, [props]);
-  function onChangeName(event) {
-    props.setUploadData(props.id, {
-      ...props.upload,
-      name: event.target.value
-    });
-  }
-  function onChangeValue(event) {
-    const value2 = parseFloat(event.target.value);
-    if (Number.isNaN(value2) || value2 < min || value2 > max || value2 === props.upload.timestamp) {
-      return;
-    }
-    props.setUploadData(props.id, {
-      ...props.upload,
-      timestamp: value2
-    });
-  }
-  return /* @__PURE__ */ import_react3.default.createElement("div", { className: upload_default.container }, /* @__PURE__ */ import_react3.default.createElement(
+  const onChangeName = (0, import_react4.useCallback)(
+    (event) => {
+      props.setUploadData(props.index, {
+        ...props.upload,
+        name: event.target.value
+      });
+    },
+    [props.index, props.upload, props.setUploadData]
+  );
+  const onChangeValue = (0, import_react4.useCallback)(
+    (event) => {
+      const value2 = parseFloat(event.target.value);
+      if (Number.isNaN(value2) || value2 < min || value2 > max || value2 === props.upload.timestamp) {
+        return;
+      }
+      props.setUploadData(props.index, {
+        ...props.upload,
+        timestamp: value2
+      });
+    },
+    [props.upload, props.index, props.setUploadData, max]
+  );
+  const onRemove = (0, import_react4.useCallback)(
+    () => props.onRemove(props.index),
+    [props.index, props.onRemove]
+  );
+  return /* @__PURE__ */ import_react4.default.createElement("div", { className: upload_default.container }, /* @__PURE__ */ import_react4.default.createElement(
     "input",
     {
       type: "text",
@@ -23652,7 +23687,7 @@ function Upload(props) {
       value: props.upload.name,
       onChange: onChangeName
     }
-  ), /* @__PURE__ */ import_react3.default.createElement(
+  ), /* @__PURE__ */ import_react4.default.createElement(
     "input",
     {
       type: "range",
@@ -23662,7 +23697,7 @@ function Upload(props) {
       max,
       onChange: onChangeValue
     }
-  ), /* @__PURE__ */ import_react3.default.createElement(
+  ), /* @__PURE__ */ import_react4.default.createElement(
     "input",
     {
       type: "number",
@@ -23672,7 +23707,7 @@ function Upload(props) {
       max,
       onChange: onChangeValue
     }
-  ), /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => props.onRemove(props.id) }, "Remove"));
+  ), /* @__PURE__ */ import_react4.default.createElement("button", { type: "button", onClick: onRemove }, "Remove"));
 }
 
 // source/components/video-editor.module.css
@@ -23682,37 +23717,45 @@ var video_editor_default = {
 };
 
 // source/components/video-editor.tsx
-var import_react4 = __toESM(require_react(), 1);
+var import_react5 = __toESM(require_react(), 1);
 function VideoEditor(props) {
-  const [files, setFiles] = (0, import_react4.useState)(props.files ?? []);
-  const fileInputRef = (0, import_react4.useRef)(null);
-  async function onAddFile(event) {
-    assertNotNullish(event.target.files, "files");
-    const addedFiles = [];
-    for (const file of event.target.files) {
-      const soundFile = await SoundFile.fromFile(file);
-      addedFiles.push({
-        soundFile,
-        timestamp: 0,
-        name: file.name.replace(/\..*$/, "")
-      });
-    }
-    setFiles([...files, ...addedFiles]);
-  }
-  function setUploadData(index, value) {
-    const newFiles = [...files];
-    newFiles[index] = value;
-    setFiles(newFiles);
-  }
-  function onRemoveFile(index) {
-    const newFiles = [...files];
-    const toRemove = newFiles.splice(index)[0];
-    toRemove.soundFile.dispose();
-    setFiles(newFiles);
-  }
-  async function onRender() {
-  }
-  return /* @__PURE__ */ import_react4.default.createElement("div", { className: props.className }, /* @__PURE__ */ import_react4.default.createElement(
+  const [files, setFiles] = (0, import_react5.useState)(props.files ?? []);
+  const fileInputRef = (0, import_react5.useRef)(null);
+  const appContext = (0, import_react5.useContext)(AppContext);
+  const onAddFile = (0, import_react5.useCallback)(
+    (event) => {
+      async function addFiles(uploadedFiles) {
+        const addedFiles = [];
+        for (const file of uploadedFiles) {
+          addedFiles.push(new UploadData(await SoundFile.fromFile(file)));
+        }
+        setFiles([...files, ...addedFiles]);
+      }
+      assertNotNullish(event.target.files, "files");
+      void addFiles(event.target.files);
+    },
+    [files]
+  );
+  const setUploadData = (0, import_react5.useCallback)(
+    (index, value) => {
+      const newFiles = [...files];
+      newFiles[index] = value;
+      setFiles(newFiles);
+    },
+    [files]
+  );
+  const onRemoveFile = (0, import_react5.useCallback)(
+    (index) => {
+      const newFiles = [...files];
+      const toRemove = newFiles.splice(index)[0];
+      toRemove.soundFile.dispose();
+      setFiles(newFiles);
+    },
+    [files]
+  );
+  const onRender = (0, import_react5.useCallback)(() => {
+  }, []);
+  return /* @__PURE__ */ import_react5.default.createElement("div", { className: props.className }, /* @__PURE__ */ import_react5.default.createElement(
     "input",
     {
       ref: fileInputRef,
@@ -23722,11 +23765,11 @@ function VideoEditor(props) {
       multiple: true,
       hidden: true
     }
-  ), /* @__PURE__ */ import_react4.default.createElement("div", { className: video_editor_default.buttonRow }, /* @__PURE__ */ import_react4.default.createElement("button", { onClick: () => void onRender() }, "Render"), /* @__PURE__ */ import_react4.default.createElement("button", { onClick: () => fileInputRef.current?.click() }, "Add Song")), /* @__PURE__ */ import_react4.default.createElement("ol", { className: video_editor_default.entryList }, files.map((file, index) => /* @__PURE__ */ import_react4.default.createElement(
+  ), /* @__PURE__ */ import_react5.default.createElement("div", { className: video_editor_default.buttonRow }, /* @__PURE__ */ import_react5.default.createElement("button", { type: "button", onClick: onRender }, "Render"), /* @__PURE__ */ import_react5.default.createElement("button", { type: "button", onClick: () => fileInputRef.current?.click() }, "Add Song")), /* @__PURE__ */ import_react5.default.createElement("ol", { className: video_editor_default.entryList }, files.map((file, index) => /* @__PURE__ */ import_react5.default.createElement(
     Upload,
     {
-      key: index,
-      id: index,
+      key: file.id,
+      index,
       upload: file,
       setUploadData,
       onRemove: onRemoveFile
@@ -23741,15 +23784,24 @@ var video_preview_default = {
 };
 
 // source/components/video-preview.tsx
-var import_react5 = __toESM(require_react(), 1);
+var import_react6 = __toESM(require_react(), 1);
 function VideoPreview(props) {
-  return /* @__PURE__ */ import_react5.default.createElement("div", { className: `${props.className} ${video_preview_default.container}` }, /* @__PURE__ */ import_react5.default.createElement("video", { className: video_preview_default.videoPreview, width: 0, height: 0, controls: true }, /* @__PURE__ */ import_react5.default.createElement("source", { src: props.video, type: "video/mp4" })));
+  return /* @__PURE__ */ import_react6.default.createElement("div", { className: `${props.className} ${video_preview_default.container}` }, /* @__PURE__ */ import_react6.default.createElement("video", { className: video_preview_default.videoPreview, width: 0, height: 0, controls: true }, /* @__PURE__ */ import_react6.default.createElement("source", { src: props.video, type: "video/mp4" })));
 }
 
 // source/components/app.tsx
-var import_react6 = __toESM(require_react(), 1);
+var import_react7 = __toESM(require_react(), 1);
 function App() {
-  return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null, /* @__PURE__ */ import_react6.default.createElement(Navbar, null), /* @__PURE__ */ import_react6.default.createElement("div", { className: app_default.page }, /* @__PURE__ */ import_react6.default.createElement(VideoEditor, { className: app_default.editor }), /* @__PURE__ */ import_react6.default.createElement(VideoPreview, { className: app_default.preview })), /* @__PURE__ */ import_react6.default.createElement(Footer, null));
+  return /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null, /* @__PURE__ */ import_react7.default.createElement(Navbar, null), /* @__PURE__ */ import_react7.default.createElement("div", { className: app_default.page }, /* @__PURE__ */ import_react7.default.createElement(VideoEditor, { className: app_default.editor }), /* @__PURE__ */ import_react7.default.createElement(VideoPreview, { className: app_default.preview })), /* @__PURE__ */ import_react7.default.createElement(Footer, null));
+}
+
+// source/contexts/multi.tsx
+var import_react8 = __toESM(require_react(), 1);
+function Nest(children, component) {
+  return (0, import_react8.cloneElement)(component, {}, children);
+}
+function MultiProvider(props) {
+  return /* @__PURE__ */ import_react8.default.createElement(import_react8.default.Fragment, null, props.providers?.reduceRight(Nest, props.children));
 }
 
 // source/utils/nullish.ts
@@ -23762,13 +23814,13 @@ function throwIfNullish(value, name) {
 }
 
 // source/main.tsx
-var import_react7 = __toESM(require_react(), 1);
+var import_react9 = __toESM(require_react(), 1);
 var import_client = __toESM(require_client(), 1);
 var root = (0, import_client.createRoot)(
   throwIfNullish(document.getElementById("root"), "root")
 );
 root.render(
-  /* @__PURE__ */ import_react7.default.createElement(import_react7.StrictMode, null, /* @__PURE__ */ import_react7.default.createElement(App, null))
+  /* @__PURE__ */ import_react9.default.createElement(import_react9.StrictMode, null, /* @__PURE__ */ import_react9.default.createElement(MultiProvider, { providers: [/* @__PURE__ */ import_react9.default.createElement(AppProvider, null)] }, /* @__PURE__ */ import_react9.default.createElement(App, null)))
 );
 /*! Bundled license information:
 
